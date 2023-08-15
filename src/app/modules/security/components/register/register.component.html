@@ -1,0 +1,45 @@
+<div class="login-outer d-flex align-items-center justify-content-center h-100">
+    <div class="login-inner">
+        <div class="container">
+            <div class="row" style="width: 400px">
+                <form action="" class="border p-5" [formGroup]="registerForm" (ngSubmit)="register()">
+                    <h1 class="text-center">Register</h1>
+                    <div class="col-12">
+                        <mat-form-field class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput placeholder="Email">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field class="w-100">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" matInput placeholder="Password">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <button mat-raised-button color="primary" class="w-100" type="submit">Sign Up</button>
+                    </div>
+                    <div class="p-2 text-center">OR</div>
+                    <div class="col-12">
+                        <button mat-raised-button color="warn" class="w-100" routerLink="/security/login">Sign In </button>
+                    </div>
+
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-12 d-flex align-items-center justify-content-center">
+                            <button mat-icon-button color="primary">
+                                <mat-icon><i class="fa-brands fa-google"></i></mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn">
+                                <mat-icon><i class="fa-brands fa-square-facebook"></i></mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent">
+                                <mat-icon><i class="fa-brands fa-twitter"></i></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="sticky-top">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Dashboard / {{ pageTitle }}</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>share</mat-icon>
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Profile</button>
+    <button mat-menu-item>LogOut</button>
+  </mat-menu>
+</mat-toolbar>
