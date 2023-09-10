@@ -2,47 +2,43 @@ import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthService {
 
-    constructor(private auth: AngularFireAuth, private router: Router, private snackbar: MatSnackBar) {
-    }
+  constructor(private auth: AngularFireAuth, private router: Router, private snackbar: MatSnackBar, private cookieService: CookieService) {
+  }
 
-    login(email: any, password: any) {
-        this.auth.signInWithEmailAndPassword(email, password)
-            .then(() => {
-                localStorage.setItem('token', 'true');
-                this.router.navigateByUrl('/dashboard').then(r => {
-                    this.snackbar.open('SuccessFull');
-                })
-            }, error => {
-                this.snackbar.open("SomeThing Went Wrong");
-                this.router.navigateByUrl('/login').then(r => {
-                    console.error("Error");
-                })
-            })
-    }
+  public createToken(data: string) {
+    this.cookieService.set('auth-token', data);
+  }
 
+  public isTokenExists(key: string): boolean {
+    return this.cookieService.check(key);
+  }
 
-    register(email:string, password:any){
-        this.auth.createUserWithEmailAndPassword(email,password).then(()=>{
-            this.snackbar.open('Account Created Successfull');
-            this.router.navigateByUrl('/login');
-        },error=>{
-            this.snackbar.open('Account Created Unsuccessfull');
-            this.router.navigateByUrl('/register');
-        })
+  public getToken(key: string): string {
+    if (this.isTokenExists(key)) {
+      return this.cookieService.get(key)
+    } else {
+      return '';
     }
+  }
 
-    signOut(){
-        this.auth.signOut().then(()=>{
-            localStorage.removeItem('token');
-            this.router.navigateByUrl('/login')
-        }, error=>{
-            this.snackbar.open("Error");
-        })
+  public removeToken(key:string){
+    if (this.isTokenExists(key)){
+      this.cookieService.delete(key);
     }
+  }
+  signOut() {
+    this.auth.signOut().then(() => {
+      this.removeToken('auth-token');
+      this.router.navigateByUrl('/security/login')
+    }, error => {
+      this.snackbar.open("Error");
+    })
+  }
 }

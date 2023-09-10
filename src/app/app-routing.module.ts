@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate:[AuthGuard]
   },
-  {path: 'not-found', component: NotFoundComponent}
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

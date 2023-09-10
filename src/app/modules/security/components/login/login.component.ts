@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../shared/services/auth.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
@@ -11,9 +11,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  constructor(private auth:AngularFireAuth, private router:Router, private snackBar:MatSnackBar) {}
+  constructor(private auth:AngularFireAuth, private router:Router, private snackBar:MatSnackBar, private authService:AuthService) {}
 
 
   loginForm = new FormGroup({
@@ -21,11 +21,19 @@ export class LoginComponent {
     password: new FormControl('',[Validators.required])
   });
 
+  ngOnInit(): void {
+    if (this.authService.isTokenExists('auth-token')){
+      this.router.navigateByUrl('/dashboard').then(r => {
+      });
+    }
+  }
+
 
   async login() {
     let email = this.loginForm.get('email')?.value;
     let password = this.loginForm.get('password')?.value;
     if (email != null && password != null) {
+      this.authService.createToken(email);
       await this.auth.signInWithEmailAndPassword(email,password)
           .then(response=>{
             this.snackBar.open('Login SuccessFully')._dismissAfter(5000);
@@ -33,4 +41,6 @@ export class LoginComponent {
           });
     }
   }
+
+
 }

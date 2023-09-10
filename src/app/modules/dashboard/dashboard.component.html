@@ -1,13 +1,12 @@
 <app-dashboard-header (sidenavToggle)="sidenav.toggle()"></app-dashboard-header>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [fixedInViewport] style="width: 300px">
+  <mat-sidenav #sidenav mode="over" [fixedInViewport] style="width: 300px">
     <mat-list role="list">
       <a routerLink="/dashboard/process" class="bb" mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact : true}">Dashboard</a>
       <a routerLink="/dashboard/home" mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact : true}">Home</a>
       <a routerLink="/dashboard/loan" mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact : true}">Loan</a>
       <a routerLink="/dashboard/expenses" mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact : true}">Expenses</a>
       <a routerLink="/dashboard/budget" mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact : true}">Budget</a>
-
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>

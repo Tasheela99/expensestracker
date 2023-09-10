@@ -10,7 +10,6 @@ export class PageTitleService implements OnInit{
   getTitle(): string {
     return this.pageTitle;
   }
-
   setTitle(title: string): void {
     this.pageTitle = title;
   }

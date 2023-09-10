@@ -2,18 +2,36 @@
     <div class="login-inner">
         <div class="container">
             <div class="row" style="width: 400px">
-                <form action="" class="border p-5" [formGroup]="registerForm" (ngSubmit)="register()">
+                <form action="" class="border p-3" [formGroup]="registerForm" (ngSubmit)="register()">
                     <h1 class="text-center">Register</h1>
+                  <div class="col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>User Name</mat-label>
+                      <input  formControlName="userName" matInput placeholder="Email">
+                    </mat-form-field>
+                  </div>
                     <div class="col-12">
-                        <mat-form-field class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Email</mat-label>
-                            <input formControlName="email" matInput placeholder="Email">
+                            <input  formControlName="userEmail" matInput placeholder="Email">
                         </mat-form-field>
                     </div>
+                  <div class="col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Phone</mat-label>
+                      <input  formControlName="userPhone" matInput placeholder="Email">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Address</mat-label>
+                      <input  formControlName="userAddress" matInput placeholder="Email">
+                    </mat-form-field>
+                  </div>
                     <div class="col-12">
-                        <mat-form-field class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Password</mat-label>
-                            <input formControlName="password" matInput placeholder="Password">
+                            <input  formControlName="password" matInput placeholder="Password">
                         </mat-form-field>
                     </div>
                     <div class="col-12">
